@@ -11,6 +11,7 @@ const LAST_PAGE_TEXT = '';
 
 //TODO: add extra test cases.
 describe(`File:${PDF_FILE} PDF.js Version:${VERSION} ps: should all throw error.`, function() {
+    this.timeout(20000);
     let dataBuffer = fs.readFileSync(PDF_FILE);
     it('should pass parse', function() {
         let options = {
