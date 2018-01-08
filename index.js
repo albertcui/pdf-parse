@@ -6,8 +6,8 @@ module.exports = PDF;
 //for testing purpose
 if (!module.parent) {
 
-    let PDF_FILE = './test/data/01-valid.pdf';
-    let dataBuffer = fs.readFileSync('./test/data/01-valid.pdf');
+    let PDF_FILE = './test/data/04-valid.pdf';
+    let dataBuffer = fs.readFileSync(PDF_FILE);
     PDF(dataBuffer).then(function(data) {
         fs.writeFileSync(`${PDF_FILE}.txt`, data.text, {
             encoding: 'utf8',

@@ -45,7 +45,7 @@ pdf(dataBuffer).then(function(data) {
 ```
 
 ## Basic Usage - HTTP
-You can use `[crawler-request](https://www.npmjs.com/package/crawler-request)` which uses the `pdf-parse`
+You can use [crawler-request](https://www.npmjs.com/package/crawler-request) which uses the `pdf-parse`
 
 ## Exception Handling
 
@@ -101,7 +101,7 @@ pdf(dataBuffer,options).then(function(data) {
 
 ## Options
 
-### Default Options
+### default options
 ```js
 const DEFAULT_OPTIONS = {
 	// internal page parser callback
@@ -126,8 +126,8 @@ check [pdf.js](https://mozilla.github.io/pdf.js/getting_started/)
 * `'v1.9.426'`
 * `'v1.10.88'`
 
-**default uses version v1.9.426**  
-**v1.9.426 is stable, v1.10.88 is beta**  
+*default* uses version *v1.9.426*   
+*v1.9.426* stable, *v1.10.88* beta  
 
 ## Test
 `mocha` or `npm test`
