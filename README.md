@@ -18,6 +18,7 @@
 `npm install pdf-parse`
  
 ## Basic Usage - Local Files
+
 ```js
 const fs = require('fs');
 const pdf = require('pdf-parse');
@@ -44,9 +45,10 @@ pdf(dataBuffer).then(function(data) {
 ```
 
 ## Basic Usage - HTTP
-> You can use  [crawler-request](https://www.npmjs.com/package/crawler-request) which uses the `pdf-parse`
+You can use `[crawler-request](https://www.npmjs.com/package/crawler-request)` which uses the `pdf-parse`
 
 ## Exception Handling
+
 ```js
 const fs = require('fs');
 const pdf = require('pdf-parse');
@@ -64,7 +66,9 @@ pdf(dataBuffer).then(function(data) {
 ## Extend
 * If you need another format like json, you can change page render behaviour with a callback.
 * Check out https://mozilla.github.io/pdf.js/
+
 ```js
+// default render callback
 function render_page(pageData, ret) {
 	//check documents https://mozilla.github.io/pdf.js/
 	ret.text = ret.text ? ret.text : "";
@@ -80,7 +84,7 @@ function render_page(pageData, ret) {
 		.then(function(textContent) {
 			let strings = textContent.items.map(item => item.str);
 			let text = strings.join(' ');
-			ret.text = `${ret.text} ${text} \n\n`;
+			ret.text = ${ret.text}+${text}+" \n\n";
 		});
 }
 
@@ -93,7 +97,6 @@ let dataBuffer = fs.readFileSync('path to PDF file...');
 pdf(dataBuffer,options).then(function(data) {
 	//use new format
 });
-
 ```
 
 ## Options
@@ -123,13 +126,13 @@ check [pdf.js](https://mozilla.github.io/pdf.js/getting_started/)
 * `'v1.9.426'`
 * `'v1.10.88'`
 
-** default uses version v1.9.426**  
-** v1.9.426 is stable, v1.10.88 is beta**  
+**default uses version v1.9.426**  
+**v1.9.426 is stable, v1.10.88 is beta**  
 
 ## Test
 `mocha` or `npm test`
 
-> check test folder and QUICKSTART.js for extra usage.
+check [test folder](https://gitlab.com/autokent/pdf-parse/tree/master/test) and [QUICKSTART.js](https://gitlab.com/autokent/pdf-parse/blob/master/QUICKSTART.js) for extra usages.
 
 ## Support
 I use this package actively myself, so it has my top priority.
