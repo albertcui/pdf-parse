@@ -147,10 +147,10 @@ GitLab calls it merge request instead of pull request.
 * [How to create a merge request](https://docs.gitlab.com/ee/gitlab-basics/add-merge-request.html)
 * Check [Contributing Guide](https://gitlab.com/autokent/pdf-parse/blob/master/CONTRIBUTING.md) 
 
-### Contact me on WhatsApp
-For discussing about the package.
+### WhatsApp
+Chat on WhatsApp about any infos, ideas and suggestions. 
 
-[![WhatsApp](https://img.shields.io/badge/style-WhatsApp-green.svg?style=flat&label=%2B90%20506%20304%2024%2080)](https://api.whatsapp.com/send?phone=905063042480&text=Hi%2C%0ALet%27s%20talk%20about%20pdf-parse)
+[![WhatsApp](https://img.shields.io/badge/style-chat-green.svg?style=flat&label=whatsapp)](https://api.whatsapp.com/send?phone=905063042480&text=Hi%2C%0ALet%27s%20talk%20about%20pdf-parse)
 
 ## License
 [MIT licensed](https://gitlab.com/autokent/pdf-parse/blob/master/LICENSE) and all it's dependencies are MIT or BSD licensed.
