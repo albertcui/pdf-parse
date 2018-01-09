@@ -17,7 +17,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Launch QuickStart",
-			"program": "${workspaceFolder}/QUICKSTART.js"
+			"program": "${workspaceFolder}/quickstart.js"
 		},
 		{
 			"type": "node",
