@@ -129,9 +129,8 @@ check [pdf.js](https://mozilla.github.io/pdf.js/getting_started/)
 >*v1.9.426* stable, *v1.10.88* beta  
 
 ## Test
-`mocha` or `npm test`
-
-Check [test folder](https://gitlab.com/autokent/pdf-parse/tree/master/test) and [quickstart.js](https://gitlab.com/autokent/pdf-parse/blob/master/QUICKSTART.js) for extra usages.
+* `mocha` or `npm test`
+* Check [test folder](https://gitlab.com/autokent/pdf-parse/tree/master/test) and [quickstart.js](https://gitlab.com/autokent/pdf-parse/blob/master/quickstart.js) for extra usages.
 
 ## Support
 I use this package actively myself, so it has my top priority. You can chat on WhatsApp about any infos, ideas and suggestions.
