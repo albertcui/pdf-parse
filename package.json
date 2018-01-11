@@ -1,6 +1,6 @@
 {
     "name": "pdf-parse",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "Pure javascript cross-platform module to extract text from PDFs.",
     "main": "index.js",
     "keywords": [
@@ -20,12 +20,10 @@
         "pdfjs",
         "server side PDF parsing",
         "pdf metadata"
-
     ],
     "dependencies": {
         "debug": "^3.1.0",
-        "node-ensure": "^0.0.0",
-        "co": "^4.6.0"
+        "node-ensure": "^0.0.0"
     },
     "devDependencies": {
         "mocha": "^4.0.1"
