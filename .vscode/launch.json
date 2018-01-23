@@ -29,7 +29,10 @@
 				"--slow",
 				"20000"
 			],
-			"cwd": "${workspaceRoot}"
+			"cwd": "${workspaceRoot}",
+			"env": {
+				"DEBUG": "autokent:*,-not_this"
+			}
 		}
 	]
 }
