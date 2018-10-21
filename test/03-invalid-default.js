@@ -113,6 +113,7 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION} ps: should all throw error.
                     let strings = textContent.items.map(item => item.str);
                     let text = strings.join(' ');
                     ret.text = `${ret.text} ${text} \n\n`;
+                    return ret.text;
                 });
         }
 
@@ -158,6 +159,7 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION} ps: should all throw error.
                     //let text = strings.join(' ');
                     //ret.text = `${ret.text} ${text} \n\n`;
                     ret.text = 'modified callback';
+                    return ret.text;
                 });
         }
 

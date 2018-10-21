@@ -112,9 +112,8 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
 
     it(`should pass parse with option max:${PDF_PAGE_COUNT-1} & render callback`, function() {
-        function render_page(pageData, ret) {
+        function render_page(pageData) {
             //check documents https://mozilla.github.io/pdf.js/
-            ret.text = ret.text ? ret.text : "";
 
             let render_options = {
                 //replaces all occurrences of whitespace with standard spaces (0x20). The default value is `false`.
@@ -125,9 +124,17 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
             return pageData.getTextContent(render_options)
                 .then(function(textContent) {
-                    let strings = textContent.items.map(item => item.str);
-                    let text = strings.join(' ');
-                    ret.text = `${ret.text} ${text} \n\n`;
+                    let lastY, text = '';
+                    for (let item of textContent.items) {
+                        if (lastY == item.transform[5] || !lastY){
+                            text += item.str;
+                        }  
+                        else{
+                            text += '\n' + item.str;
+                        }    
+                        lastY = item.transform[5];
+                    }
+                    return text;
                 });
         }
 
@@ -163,9 +170,8 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
 
     it(`should pass parse with option max:${PDF_PAGE_COUNT-1} & render modified callback`, function() {
-        function render_page(pageData, ret) {
+        function render_page(pageData) {
             //check documents https://mozilla.github.io/pdf.js/
-            ret.text = ret.text ? ret.text : "";
 
             let render_options = {
                 //replaces all occurrences of whitespace with standard spaces (0x20). The default value is `false`.
@@ -176,10 +182,7 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
             return pageData.getTextContent(render_options)
                 .then(function(textContent) {
-                    //let strings = textContent.items.map(item => item.str);
-                    //let text = strings.join(' ');
-                    //ret.text = `${ret.text} ${text} \n\n`;
-                    ret.text = 'modified callback';
+                    return 'modified callback';
                 });
         }
 
