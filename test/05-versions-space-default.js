@@ -1,13 +1,13 @@
 const assert = require('assert');
-const PDF = require('../');
+const PDF = require('..');
 const fs = require('fs');
 
 // to test another valid pdf file just change this 5 constants.
-const PDF_FILE = './test/data/02-valid.pdf';
-const VERSION = 'v1.10.88';
-const PDF_PAGE_COUNT = 5;
-const FIST_PAGE_TEXT = 'According to literature, solar cells';
-const LAST_PAGE_TEXT = 'royal Institute of Technology, Stockholm';
+const PDF_FILE = './test/data/05-versions-space.pdf';
+const VERSION = 'default';
+const PDF_PAGE_COUNT = 1;
+const FIST_PAGE_TEXT = 'Dadfrtfjh,mgf';
+const LAST_PAGE_TEXT = 'v.0.01';
 
 //TODO: add extra test cases.
 describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
@@ -19,12 +19,15 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
         };
 
         return PDF(dataBuffer, options).then(function(data) {
-            //fs.writeFileSync(`${PDF_FILE}.txt`, data.text, 'utf8');
+            fs.writeFileSync(`${PDF_FILE}.txt`, data.text, {
+                encoding: 'utf8',
+                flag: 'w'
+            });
             assert.equal(data.numpages, PDF_PAGE_COUNT);
             assert.equal(data.numrender, PDF_PAGE_COUNT);
             assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
             assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
-            assert.notEqual(data.info, null);
+
         });
     });
 
@@ -41,7 +44,7 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
             assert.equal(data.numrender, PDF_PAGE_COUNT);
             assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
             assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
-            assert.notEqual(data.info, null);
+
         });
     });
 
@@ -58,7 +61,7 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
             assert.equal(data.numrender, PDF_PAGE_COUNT);
             assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
             assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
-            assert.notEqual(data.info, null);
+
         });
     });
 
@@ -75,15 +78,15 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
             assert.equal(data.numrender, PDF_PAGE_COUNT);
             assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
             assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
-            assert.notEqual(data.info, null);
+
         });
     });
 
 
-    it(`should pass parse with option max:${PDF_PAGE_COUNT-1}`, function() {
+    it(`should pass parse with option max:${PDF_PAGE_COUNT}`, function() {
         let options_01 = {
             version: VERSION,
-            max: PDF_PAGE_COUNT - 1
+            max: PDF_PAGE_COUNT
         };
 
         let options_02 = {
@@ -94,10 +97,10 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
             //fs.writeFileSync('./data/01-test.txt', data.text, 'utf8');
             assert.equal(data.numpages, PDF_PAGE_COUNT);
-            assert.equal(data.numrender, PDF_PAGE_COUNT - 1);
+            assert.equal(data.numrender, PDF_PAGE_COUNT);
             assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
-            assert.notEqual(data.text.includes(LAST_PAGE_TEXT), true);
-            assert.notEqual(data.info, null);
+            assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
+
         }).then(function() {
             return PDF(dataBuffer, options_02).then(function(data) {
                 //fs.writeFileSync('./data/01-test.txt', data.text, 'utf8');
@@ -105,18 +108,19 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
                 assert.equal(data.numrender, PDF_PAGE_COUNT);
                 assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
                 assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
-                assert.notEqual(data.info, null);
+
             });
         });
     });
 
 
-    it(`should pass parse with option max:${PDF_PAGE_COUNT-1} & render callback`, function() {
+    it(`should pass parse with option max:${PDF_PAGE_COUNT} & render callback`, function() {
         function render_page(pageData) {
             //check documents https://mozilla.github.io/pdf.js/
+
             let render_options = {
                 //replaces all occurrences of whitespace with standard spaces (0x20). The default value is `false`.
-                normalizeWhitespace: true,
+                normalizeWhitespace: false,
                 //do not attempt to combine same line TextItem's. The default value is `false`.
                 disableCombineTextItems: false
             }
@@ -139,7 +143,7 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
         let options_01 = {
             version: VERSION,
-            max: PDF_PAGE_COUNT - 1,
+            max: PDF_PAGE_COUNT,
             pagerender: render_page
         };
 
@@ -151,10 +155,10 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
             //fs.writeFileSync('./data/01-test.txt', data.text, 'utf8');
             assert.equal(data.numpages, PDF_PAGE_COUNT);
-            assert.equal(data.numrender, PDF_PAGE_COUNT - 1);
+            assert.equal(data.numrender, PDF_PAGE_COUNT);
             assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
-            assert.notEqual(data.text.includes(LAST_PAGE_TEXT), true);
-            assert.notEqual(data.info, null);
+            assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
+
         }).then(function() {
             return PDF(dataBuffer, options_02).then(function(data) {
                 //fs.writeFileSync('./data/01-test.txt', data.text, 'utf8');
@@ -162,15 +166,16 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
                 assert.equal(data.numrender, PDF_PAGE_COUNT);
                 assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
                 assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
-                assert.notEqual(data.info, null);
+
             });
         });
     });
 
 
-    it(`should pass parse with option max:${PDF_PAGE_COUNT-1} & render modified callback`, function() {
+    it(`should pass parse with option max:${PDF_PAGE_COUNT} & render modified callback`, function() {
         function render_page(pageData) {
             //check documents https://mozilla.github.io/pdf.js/
+
             let render_options = {
                 //replaces all occurrences of whitespace with standard spaces (0x20). The default value is `false`.
                 normalizeWhitespace: true,
@@ -186,7 +191,7 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
         let options_01 = {
             version: VERSION,
-            max: PDF_PAGE_COUNT - 1,
+            max: PDF_PAGE_COUNT,
             pagerender: render_page
         };
 
@@ -198,10 +203,10 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
 
             //fs.writeFileSync('./data/01-test.txt', data.text, 'utf8');
             assert.equal(data.numpages, PDF_PAGE_COUNT);
-            assert.equal(data.numrender, PDF_PAGE_COUNT - 1);
+            assert.equal(data.numrender, PDF_PAGE_COUNT);
             assert.equal(data.text.includes('modified callback'), true);
             assert.notEqual(data.text.includes(LAST_PAGE_TEXT), true);
-            assert.notEqual(data.info, null);
+
         }).then(function() {
             return PDF(dataBuffer, options_02).then(function(data) {
                 //fs.writeFileSync('./data/01-test.txt', data.text, 'utf8');
@@ -209,7 +214,7 @@ describe(`File:${PDF_FILE} PDF.js Version:${VERSION}`, function() {
                 assert.equal(data.numrender, PDF_PAGE_COUNT);
                 assert.equal(data.text.includes(FIST_PAGE_TEXT), true);
                 assert.equal(data.text.includes(LAST_PAGE_TEXT), true);
-                assert.notEqual(data.info, null);
+
             });
         });
     });
