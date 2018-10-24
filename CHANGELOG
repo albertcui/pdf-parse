@@ -1,3 +1,11 @@
+# 1.1.0
+* readme updated
+* custom callback must return current page text not all page's text [#1 commment](https://gitlab.com/autokent/pdf-parse/issues/4#note_111256593)
+
+# 1.0.9
+* extra space injection issue fixed. [#1](https://gitlab.com/autokent/pdf-parse/issues/4)
+* custom callback signature changed.
+
 # 1.0.8
 * co dependency removed.
 
