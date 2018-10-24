@@ -116,7 +116,7 @@ const DEFAULT_OPTIONS = {
 	// max page number to parse
     max: 0,
     //check https://mozilla.github.io/pdf.js/getting_started/
-    version: 'v1.9.426'
+    version: 'v1.10.100'
 }
 ```
 ### *pagerender* (callback)
@@ -130,10 +130,12 @@ check [pdf.js](https://mozilla.github.io/pdf.js/getting_started/)
 
 * `'default'`
 * `'v1.9.426'`
+* `'v1.10.100'`
 * `'v1.10.88'`
+* `'v2.0.550'`
 
->*default* uses version *v1.9.426*   
->*v1.9.426* stable, *v1.10.88* beta  
+>*default* uses version *v1.10.100*   
+>[mozilla.github.io/pdf.js](https://mozilla.github.io/pdf.js/getting_started/#download)
 
 ## Test
 * `mocha` or `npm test`
