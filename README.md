@@ -113,10 +113,12 @@ const DEFAULT_OPTIONS = {
 	// internal page parser callback
 	// you can set this option, if you need another format except raw text
 	pagerender: render_page,
+	
 	// max page number to parse
-    max: 0,
-    //check https://mozilla.github.io/pdf.js/getting_started/
-    version: 'v1.10.100'
+	max: 0,
+	
+	//check https://mozilla.github.io/pdf.js/getting_started/
+	version: 'v1.10.100'
 }
 ```
 ### *pagerender* (callback)
@@ -134,7 +136,7 @@ check [pdf.js](https://mozilla.github.io/pdf.js/getting_started/)
 * `'v1.10.88'`
 * `'v2.0.550'`
 
->*default* uses version *v1.10.100*   
+>*default* version is *v1.10.100*   
 >[mozilla.github.io/pdf.js](https://mozilla.github.io/pdf.js/getting_started/#download)
 
 ## Test
